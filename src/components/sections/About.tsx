@@ -75,6 +75,8 @@ export default function About() {
 
       <style>{`
 @layer components {
+/* tighter than other sections so the intro + buttons fit one screen after a nav jump; the strap reads the same var */
+.about { --section-y: clamp(72px, 10vh, 120px); }
 .about-grid { display: grid; grid-template-columns: minmax(0,1fr) 320px minmax(0,1fr); gap: clamp(24px, 4vw, 64px); align-items: stretch; }
 .about-left, .about-right { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; }
 .about-card { display: flex; justify-content: center; margin-top: calc(-1 * var(--section-y)); }

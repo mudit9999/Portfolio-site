@@ -31,7 +31,12 @@ const title = `${PROFILE.name} — ${PROFILE.role}`;
 const description = PROFILE.resumeSummary;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.SITE_URL ??
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : "http://localhost:3000"),
+  ),
   title,
   description,
   authors: [{ name: PROFILE.name }],

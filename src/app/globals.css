@@ -63,9 +63,6 @@
     outline-offset: 3px;
     border-radius: 6px;
   }
-  [id] {
-    scroll-margin-top: 80px;
-  }
   /* Lenis */
   html.lenis,
   html.lenis body {

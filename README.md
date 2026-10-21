@@ -11,7 +11,7 @@ npm run build    # production build (type-check + lint)
 npm start        # serve the build
 ```
 
-Set `SITE_URL` (for example `https://example.com`) when you build for production, so the Open Graph image URLs are absolute.
+Open Graph image URLs are made absolute from `SITE_URL` (for example `https://example.com`). On Vercel this is automatic: the build falls back to `VERCEL_PROJECT_PRODUCTION_URL`.
 
 First-load JS for `/` is about 129 kB. Lighthouse on the production build gives:
 - Mobile: Performance 95, Accessibility 100, Best Practices 100, SEO 100.
