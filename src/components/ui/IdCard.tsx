@@ -174,6 +174,12 @@ export default function IdCard({ area }: { area: React.RefObject<HTMLElement | n
 @media (hover: hover) { .idcard:hover .idcard-inner { transform: rotateY(180deg); } }
 .idcard-face { position: absolute; inset: 0; border-radius: 22px; background: #fff; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: var(--hair), 0 40px 70px -35px rgba(13,13,13,.4), 0 10px 20px -12px rgba(13,13,13,.15); display: flex; flex-direction: column; align-items: center; }
 .idcard-back { transform: rotateY(180deg); align-items: stretch; }
+/* Safari ignores backface-visibility for composited children (the photo leaked through the back),
+   so also hide the turned-away face; the swap lands at ~0.1s, when the eased flip passes 90deg */
+.idcard-face { transition: visibility 0s .1s; }
+.idcard-back, .idcard.is-flipped .idcard-front { visibility: hidden; }
+.idcard.is-flipped .idcard-back { visibility: visible; }
+@media (hover: hover) { .idcard:hover .idcard-front { visibility: hidden; } .idcard:hover .idcard-back { visibility: visible; } }
 .idcard-band { width: 100%; height: 48px; background: var(--ink); color: #fff; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 18px 10px; font-size: 10px; letter-spacing: .2em; position: relative; flex: none; }
 .idcard-band .slot { position: absolute; left: 50%; top: 8px; width: 44px; height: 8px; border-radius: 6px; transform: translateX(-50%); background: var(--paper); box-shadow: inset 0 1px 2px rgba(0,0,0,.4); }
 .idcard-photo { margin-top: 14px; position: relative; }
